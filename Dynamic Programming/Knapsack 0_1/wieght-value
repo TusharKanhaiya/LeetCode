@@ -1,0 +1,76 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package leetcode;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ *
+ * @author HP
+ */
+public class Leetcode {
+
+    static int t[][] = new int[5][9];
+    static int x=0;
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        int wt[] = {2,3,4,5};
+        int val[] = {1,2,5,6};
+        int n = 4;
+        int w = 8;
+        
+        for(int i=0;i<5;i++)
+        {
+            for(int j =0;j<9;j++)
+            {
+                if(i==0||j==0)
+                    t[i][j] = 0;
+            }
+        }
+        
+        for(int i=1;i<5;i++)
+        {
+            for(int j=1 ;j<9;j++)
+            {
+                if(wt[i] <= j)
+                    t[i][j] = Math.max(val[i-1] + t[i-1][j-wt[i-1]], t[i-1][j]);
+                else
+                    t[i][j] = t[i-1][j];
+            }
+        }
+        System.out.println(t[5][9]);
+                
+        
+//        System.out.println(solve(wt,val,w,n));
+//        System.out.println("no. of times "+x);
+//        for(int i=0;i<5;i++)
+//        {
+//            for(int j =0;j<9;j++)
+//                System.out.print(t[i][j]+" ");
+//            System.out.println();
+//        }
+        
+    }
+    
+    private static int solve(int wt[] , int val[] , int w,int n)
+    {
+        x++;
+        if(n==0||w==0)
+            return 0;
+        if(t[n][w] !=-1)
+            return t[n][w];
+        
+        if(wt[n-1]<=w)
+            return t[n][w] = Math.max(val[n-1] + solve(wt,val,w-wt[n-1],n-1), solve(wt,val,w,n-1));
+        else
+            return t[n][w] = solve(wt,val,w,n-1);
+    }
+    
+}
