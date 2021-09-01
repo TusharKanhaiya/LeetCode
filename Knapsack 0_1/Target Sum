@@ -1,0 +1,11 @@
+Question Explaination :- we have to assign '+' or '-' signs to all the elements in array such that after assining sign, sum of all elements in array is equal to sum (Given). 
+
+Given :
+
+  Input:
+        arr[] : {1,1,2,3}
+        sum   : 1
+       
+  Output :
+          It is same as no. of pair of subset having given differnce as at last we have to do S1-S2 = diff (in case of no. of pair of subset having given differnce) or equal
+          to sum in this case.
