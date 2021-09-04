@@ -1,0 +1,92 @@
+public class Leetcode {
+    static int t[][];
+    
+    public static void main(String[] args) {
+        String x = "abcdghe";
+        String y = "abedchk";
+        String s = "";
+        int m = x.length();
+        int n = y.length();
+        
+        t = new int[m+1][n+1];
+        
+        for(int i=0;i<m+1;i++)
+        {
+            for(int j=0;j<n+1;j++)
+            {
+                if(i==0||j==0)
+                    t[i][j] = 0;
+            }
+        }
+        
+        for(int i=1;i<m+1;i++)
+        {
+            for(int j=1;j<n+1;j++)
+            {
+                if(x.charAt(i-1) == y.charAt(j-1))
+                {
+                    t[i][j] = 1+t[i-1][j-1];
+                    //s = s+x.charAt(i-1);
+                }
+                else
+                    t[i][j] = Math.max(t[i-1][j], t[i][j-1]);
+            }
+        }
+        
+        System.out.println("Length of Shortest Super Sequence is "+(m+n-t[m][n]));
+        
+        //Print Shortest Super Sequence
+        int i = m,j=n;
+        while(i>0 && j>0)
+        {
+            if(x.charAt(i-1) == y.charAt(j-1))
+            {
+                s = s+x.charAt(i-1);
+                i--;
+                j--;
+            }
+            else
+            {
+                if(t[i][j-1]>t[i-1][j])
+                {
+                    s = s+y.charAt(j-1);
+                    j--;
+                }
+                else
+                {
+                    s = s+x.charAt(i-1);
+                    i--;
+                }
+            }
+        }
+        while(i>0)
+        {
+            s = s+x.charAt(i-1);
+            i--;
+        }
+        while(j>0)
+        {
+            s = s+y.charAt(j-1);
+            j--;
+        }
+        
+        System.out.println(s);
+        
+        
+    }
+
+    private static int solve(String x, String y, int m, int n) {
+       if(m==0 || n==0)
+           return 0;
+       else
+       {
+           if(x.charAt(m-1) == y.charAt(n-1))
+               return 1+solve(x,y,m-1,n-1);
+           else
+               return Math.max(solve(x,y,m-1,n),solve(x,y,m,n-1));
+       }
+    }
+    
+    
+}
+
