@@ -1,0 +1,61 @@
+public class Leetcode {
+    
+    public static void main(String[] args) {
+            
+        String arr = "akasak";
+        int n = arr.length();
+        int m[][] = new int[n][n];
+        int s[][] = new int [n][n];
+        int j,min,q;
+        
+        for(int d = 1;d<=n;d++)
+        {
+            for(int i=0;i<=n-d;i++)
+            {
+                j = i+d-1;
+                min = Integer.MAX_VALUE;
+                if(isPalindrome(arr.substring(i, j+1)))
+                {
+                    m[i][j] = 0;
+                    continue;
+                }
+                for(int k=i;k<=j-1;k++)
+                {
+                    q = m[i][k] + m[k+1][j] + 1;
+                    if(q<min)
+                    {
+                        min = q;
+                        s[i][j] = k;
+                    }
+                }
+                m[i][j] = min;
+            }
+        }
+        System.out.println(m[0][n-1]);
+        
+    }
+
+
+    private static boolean isPalindrome(String arr) {
+       int i = 0, j = arr.length() - 1;
+ 
+        // While there are characters to compare
+        while (i < j) {
+ 
+            // If there is a mismatch
+            if (arr.charAt(i) != arr.charAt(j))
+                return false;
+ 
+            // Increment first pointer and
+            // decrement the other
+            i++;
+            j--;
+        }
+ 
+        // Given string is a palindrome
+        return true;
+    }
+    
+    
+}
+
