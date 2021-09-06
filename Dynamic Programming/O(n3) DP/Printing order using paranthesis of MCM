@@ -1,0 +1,62 @@
+public class Leetcode {
+    static char name;
+    
+    public static void main(String[] args) {
+        int arr[] = {4,2,3,2,1,2};
+        int n = arr.length;
+        int m[][] = new int[n][n];
+        int s[][] = new int [n][n];
+        int j,min,q;
+        
+        for(int d = 1;d<n-1;d++)
+        {
+            for(int i=1;i<n-d;i++)
+            {
+                j = i+d;
+                min = Integer.MAX_VALUE;
+                for(int k=i;k<=j-1;k++)
+                {
+                    q = m[i][k] + m[k+1][j] + arr[i-1]*arr[k]*arr[j];
+                    if(q<min)
+                    {
+                        min = q;
+                        s[i][j] = k;
+                    }
+                }
+                m[i][j] = min;
+            }
+        }
+        System.out.println(m[1][n-1]);
+        
+        //Printing array s to see the paranthesis numbers
+//        for(int i=0;i<n;i++)
+//        {
+//            for(j=0;j<n;j++)
+//                System.out.print(s[i][j]+" ");
+//            System.out.println();
+//        }
+        
+        name = 'A';
+        System.out.print("Optimal Parenthesization is : ");
+        
+        printParenthesis(1, n - 1, s);
+        
+        //System.out.println(solve(arr,1,arr.length-1));
+    }
+    
+    static void printParenthesis(int i, int j, int[][] bracket)
+  {
+    if (i == j)
+    {
+      System.out.print(name++);
+      return;
+    }
+    System.out.print("(");
+    printParenthesis(i, bracket[i][j], bracket); // break into i to bracket[i][j]
+    printParenthesis(bracket[i][j] + 1, j, bracket); // break into bracket[i][j] +1 to j
+    System.out.print(")");
+  }
+    
+    
+}
+
