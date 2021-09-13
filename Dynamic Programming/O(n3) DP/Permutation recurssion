@@ -33,7 +33,7 @@ public class Practice {
         String s = "abcd";
         
         permute(s,0,s.length()-1);
-        System.out.println(l); 
+        System.out.println(l); // counting no, of ways of permutation i.e (s.length())!
         
         
     }
