@@ -1,0 +1,40 @@
+public class Practice {
+    static int l = 0;
+    
+    static String swap(String s, int i, int k)
+    {
+        if(i==k)
+            return s;
+        String f = s.substring(0, i) + s.substring(k, k+1) + s.substring(i+1, k) + s.substring(i, i+1) + s.substring(k+1, s.length());
+        return f;
+    }
+    
+    static void permute(String s, int i, int j)
+    {
+        if(i<j)
+        {
+            for(int k = i ; k<=j ; k++)
+            {
+                
+                //System.out.println(l);
+                String f = swap(s,i,k);
+                permute(f,i+1,j);
+                if(j-i==1)
+                {
+                    l++;
+                    System.out.println(f);
+                }
+            }
+        }
+    }
+    
+    public static void main(String[] args) {
+   
+        String s = "abcd";
+        
+        permute(s,0,s.length()-1);
+        System.out.println(l); 
+        
+        
+    }
+}
