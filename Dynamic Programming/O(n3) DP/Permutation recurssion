@@ -1,5 +1,5 @@
 public class Practice {
-    static int l = 0;
+    static int l = 0; // for counting no. of ways
     
     static String swap(String s, int i, int k)
     {
