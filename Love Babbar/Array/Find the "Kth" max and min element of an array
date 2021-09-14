@@ -4,24 +4,38 @@
 public class Leetcode {
     
     public static void main(String[] args) {
-        int a[] = {7,5,3,2,1};
-        int k = 3;  //find 3rd smallest elememt in given array
-        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        int a[] = {7,5,3,2,1,4,6,8,9};
+        int k1 = 3;  //find 3rd smallest elememt in given array
+        int k2 = 3;  //find 3rd largest elememt in given array
+        PriorityQueue<Integer> pq1 = new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Integer> pq2 = new PriorityQueue<>();
         for(int i=0 ; i<a.length ; i++)
         {
-            if(i<k)
-                pq.add(a[i]);
+            if(i<k1)
+                pq1.add(a[i]);
             else
             {
-                if(pq.peek()>a[i])
+                if(pq1.peek()>a[i])
                 {
-                    pq.poll();
-                    pq.add(a[i]);
+                    pq1.poll();
+                    pq1.add(a[i]);
                 }
             }
+            if(i<k2)
+                pq2.add(a[i]);
+            else
+            {
+                if(pq2.peek()<a[i])
+                {
+                    pq2.poll();
+                    pq2.add(a[i]);
+                }
+            }
+            
         }
         
-        System.out.println(k+" smallest element in array is "+pq.peek());
+        System.out.println(k1+" smallest element in array is "+pq1.peek());
+        System.out.println(k2+" largest element in array is "+pq2.peek());
     }
     
 }
