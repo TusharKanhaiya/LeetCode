@@ -1,6 +1,5 @@
 public class Leetcode {
     static int t[][];
-    
     public static void main(String[] args) {
         String x = "abcdghe";
         String y = "abedchk";
