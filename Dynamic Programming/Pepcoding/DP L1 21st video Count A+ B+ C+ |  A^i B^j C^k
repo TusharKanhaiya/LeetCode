@@ -1,0 +1,53 @@
+import java.io.*;
+
+import java.util.*;
+
+public class practice1 {
+
+  public static void main(String[] args) throws Exception {
+    String str = "abcabc";
+    String bwt = "abc";
+
+    int n = str.length();
+    int l = bwt.length(); 
+
+    int [][]t = new int[n+1][l+1];
+
+    for(int i=0;i<=n;i++)
+    {
+      for(int j=0;j<=l;j++)
+      {
+        if(i==0)
+          t[i][j] = 0;
+        if(j==0)
+          t[i][j] = 1;
+      }
+    }
+
+    for(int i=1;i<=n;i++)
+    {
+      for(int j=1;j<=l;j++)
+      {
+        if(str.charAt(i-1) == bwt.charAt(j-1))
+          t[i][j] = 2*t[i-1][j] + t[i-1][j-1];
+        else
+          t[i][j] = t[i-1][j];
+      }
+    }
+
+    System.out.println(t[n][l]);
+    print(t, n, l);
+    
+  }
+
+  public static void print(int t[][] ,int n ,int l)
+    {
+        for(int i=0;i<n+1;i++)
+        {
+            for(int j = 0;j<l+1;j++)
+                System.out.print(t[i][j] + "    ");
+            System.out.println();
+        }
+    }
+
+}
